@@ -1,0 +1,15 @@
+# Python cache
+pycache/
+*.pyc
+
+# Django database
+db.sqlite3
+
+# Environment variables
+.env
+
+# VS Code settings (optional)
+.vscode/
+
+# Node modules (if you have frontend)
+node_modules/
