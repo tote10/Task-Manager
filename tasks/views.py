@@ -1,5 +1,6 @@
 from rest_framework import viewsets
 from .models import Task
+from rest_framework.permissions import IsAuthenticated
 from .serializers import TaskSerializer
 from rest_framework import status
 from rest_framework.response import Response
@@ -9,6 +10,11 @@ from .serializers import LoginSerializer
 class TaskViewSet(viewsets.ModelViewSet):
     queryset = Task.objects.all()
     serializer_class = TaskSerializer
+    permission_classes = [IsAuthenticated]
+    def peform_create(self, serializer):
+        serializer.save(user=self.request.user)
+    def get_queryset(self):
+        return self.queryset.filter(user=self.request.user)
 class RegisterView(APIView):
     def post(self, request):
         serializer = RegisterSerializer(data=request.data)

@@ -7,6 +7,7 @@ class TaskSerializer(serializers.ModelSerializer):
         model=Task
         fields=[
             'id',
+            'user',
             'title',
             'description',
             'priority',
@@ -16,6 +17,7 @@ class TaskSerializer(serializers.ModelSerializer):
             'due_date',
             'category',     
         ]
+        read_only_fields = ['user']
 class RegisterSerializer(serializers.ModelSerializer):
     password = serializers.CharField(write_only=True)
 
